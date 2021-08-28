@@ -1,0 +1,72 @@
+<component name="libraryTable">
+  <library name="appinventor">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/legacy-support-core-ui.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/slidingpanelayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/google-http-client-android2-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/documentfile.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/apksigner.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/lifecycle-common.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/interpolator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/twitter4jmedia.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/AnnotationProcessors.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/google-oauth-client-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/webrtc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/lifecycle-runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/viewpager.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/gson-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/versionedparcelable.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/constraintlayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/google-api-client-android2-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/google-api-client-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/localbroadcastmanager.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/lifecycle-livedata-core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/android.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/coordinatorlayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/acra-4.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/androidsvg.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/vectordrawable.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/AndroidRuntime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/asynclayoutinflater.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/constraintlayout-solver.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/jedis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/lifecycle-viewmodel.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/drawerlayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/collection.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/http-legacy.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/QRGenerator.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/annotation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/commons-pool.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/google-http-client-android3-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/loader.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/CommonVersion.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/vectordrawable-animated.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/httpmime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/fusiontables.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/print.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/appcompat.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/swiperefreshlayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/core-runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/twitter4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/kawa.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/legacy-support-core-utils.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/google-http-client-beta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/jts.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/osmdroid.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/customview.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/lifecycle-livedata.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/fragment.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/core-common.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/guava-14.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/firebase.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/dx.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/Barcode.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/physicaloid.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/appinventor/cursoradapter.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
