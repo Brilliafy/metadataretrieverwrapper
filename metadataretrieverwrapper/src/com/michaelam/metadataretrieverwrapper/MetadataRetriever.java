@@ -37,7 +37,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     public String ExtractMediaMetaData(String fullFileName, int keyConstant) {
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         File file = new File(fullFileName);
-        if (!file.exists() && !file.getAbsolutePath().contains("/")) {
+        if (!file.exists()) {
             if (isDevelopment()) {
                 File developmentAsset = new File(context.getExternalFilesDir(null).getAbsolutePath() + "/AppInventor/assets/", fullFileName);
                 if (developmentAsset.exists()) {
