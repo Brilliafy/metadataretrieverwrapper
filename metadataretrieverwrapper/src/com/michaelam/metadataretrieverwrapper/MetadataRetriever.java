@@ -311,7 +311,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
             metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
-            int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 100;
+            int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
             if(mediaDurationMicroseconds < timeUs)
             {
                 return "ERROR! Frame is out of media duration.";
