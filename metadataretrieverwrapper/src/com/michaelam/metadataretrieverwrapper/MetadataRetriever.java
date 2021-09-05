@@ -80,7 +80,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = " This method retrieves the meta data value associated with the keyCode. The keyCode currently supported is listed in the official android MetadataRetriever class page as METADATA_XXX constants. With any other value, it returns a null pointer.")
-    public String ExtractMediaMetaData(String fullFileName, int keyCode) {
+    public String extractMetadata(String absoluteFilename, int keyCode) {
         if(android.os.Build.VERSION.SDK_INT < 10) {
             return "ERROR! Insufficient API level.";
         }
@@ -93,7 +93,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String metaData = "";
         try
         {
-            metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
+            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
             metaData = metaRetriever.extractMetadata(keyCode);
             metaRetriever.release();
         }
@@ -109,7 +109,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = "This method finds the optional graphic or album/cover art associated associated with the data source. If there are more than one pictures, (any) one of them is returned.")
-    public String getEmbeddedPicture(String fullFileName)
+    public String getEmbeddedPicture(String absoluteFilename)
     {
         if(android.os.Build.VERSION.SDK_INT < 10) {
             return "ERROR! Insufficient API level.";
@@ -118,7 +118,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String embeddedImagePath = "ERROR! Could not retrieve embedded image.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
+            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
             byte[] embeddedImageData = metaRetriever.getEmbeddedPicture();
             metaRetriever.release();
             if(embeddedImageData == null) {
@@ -138,7 +138,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
-    public String getFrameAtIndex (String fullFileName, int frameIndex)
+    public String getFrameAtIndex (String absoluteFilename, int frameIndex)
     {
         if(android.os.Build.VERSION.SDK_INT < 28) {
             return "ERROR! Insufficient API level.";
@@ -147,7 +147,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String videoFramePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
+            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
             int mediaTotalFrames =  Integer.parseInt(metaRetriever.extractMetadata(32));
             if(mediaTotalFrames < frameIndex)
             {
@@ -171,7 +171,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
-    public String getFrameAtTime (String fullFileName, long timeUs)
+    public String getFrameAtTime (String absoluteFilename, long timeUs)
     {
         if(android.os.Build.VERSION.SDK_INT < 10) {
             return "ERROR! Insufficient API level.";
@@ -180,7 +180,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String videoFramePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
+            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
             int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
             if(mediaDurationMicroseconds < timeUs)
             {
@@ -204,7 +204,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
-    public String getFrameAtTimeOptionOverload(String fullFileName, long timeUs, int option)
+    public String getFrameAtTimeOptionOverload(String absoluteFilename, long timeUs, int option)
     {
         if(android.os.Build.VERSION.SDK_INT < 10) {
             return "ERROR! Insufficient API level.";
@@ -213,7 +213,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String videoFramePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
+            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
             int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
             if(mediaDurationMicroseconds < timeUs)
             {
@@ -237,7 +237,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = "This method retrieves a still image by its index.")
-    public String getImageAtIndex (String fullFileName, int imageIndex)
+    public String getImageAtIndex (String absoluteFilename, int imageIndex)
     {
         if(android.os.Build.VERSION.SDK_INT < 28) {
             return "ERROR! Insufficient API level.";
@@ -246,7 +246,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String imagePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
+            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
             int mediaTotalFrames =  Integer.parseInt(metaRetriever.extractMetadata(32));
             if(mediaTotalFrames < imageIndex)
             {
@@ -270,7 +270,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = "This method retrieves the primary image of the media content.")
-    public String getPrimaryImage (String fullFileName)
+    public String getPrimaryImage (String absoluteFilename)
     {
         if(android.os.Build.VERSION.SDK_INT < 28) {
             return "ERROR! Insufficient API level.";
@@ -278,7 +278,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String imagePath = "ERROR! Could not primary frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
+            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
             Bitmap imageBitmap = metaRetriever.getPrimaryImage();
             metaRetriever.release();
             if(imageBitmap == null) {
@@ -297,7 +297,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = "Retrieve a video frame near a given timestamp scaled to a desired size. This method finds a representative frame close to the given time position by considering the given option if possible, and returns it as a bitmap with same aspect ratio as the source while scaling it so that it fits into the desired size of dst_width by dst_height. This is useful for generating a thumbnail for an input data source or just to obtain a scaled frame at the given time position.")
-    public String getScaledFrameAtTime(String fullFileName,
+    public String getScaledFrameAtTime(String absoluteFilename,
                                        long timeUs,
                                        int option,
                                        int dstWidth,
@@ -310,7 +310,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String scaledFramePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(LocateAbsoluteFilePath(fullFileName));
+            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
             int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
             if(mediaDurationMicroseconds < timeUs)
             {
@@ -333,16 +333,16 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         return "file://" + scaledFramePath;
     }
 
-    public static String LocateAbsoluteFilePath(String filepath)
+    public static String locateAbsoluteFilePath(String path)
     {
-        if(filepath.contains("file:///")) {
-            filepath = filepath.substring(7);
+        if(path.contains("file:///")) {
+            path = path.substring(7);
         }
 
-        File file = new File(filepath);
+        File file = new File(path);
         if (!file.exists()) {
             if (isDevelopment()) {
-                File developmentAsset = new File(getAI2AssetsFolderPath(), filepath);
+                File developmentAsset = new File(getAI2AssetsFolderPath(), path);
                 if (developmentAsset.exists()) {
                     file = new File(developmentAsset.getAbsolutePath());
                 } else {
@@ -350,7 +350,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
                 }
             } else {
                 try {
-                    file = new File(ExtractAssetToCache(filepath).getAbsolutePath());
+                    file = new File(ExtractAssetToCache(path).getAbsolutePath());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
