@@ -335,6 +335,10 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
 
     public static String LocateAbsoluteFilePath(String filepath)
     {
+        if(filepath.contains("file:///")) {
+            filepath = filepath.substring(7);
+        }
+
         File file = new File(filepath);
         if (!file.exists()) {
             if (isDevelopment()) {
