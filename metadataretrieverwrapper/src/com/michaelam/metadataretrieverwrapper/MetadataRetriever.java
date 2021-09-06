@@ -3,6 +3,7 @@ package com.michaelam.metadataretrieverwrapper;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.util.Log;
 import com.google.appinventor.components.annotations.DesignerComponent;
 import com.google.appinventor.components.annotations.SimpleFunction;
@@ -33,36 +34,36 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
 
     public final HashMap<Integer,Integer> minConstantsSDKVersion = new HashMap<Integer,Integer>(){{
         //(K)ey is constant, (V)alue is SDK version.
-        put(1,10);
-        put(2,10);
-        put(3,10);
-        put(4,10);
-        put(5,10);
-        put(6,10);
-        put(7,10);
-        put(8,10);
-        put(9,10);
-        put(10,10);
-        put(12,10);
-        put(13,10);
-        put(14,10);
-        put(15,10);
-        put(16,14);
-        put(17,14);
-        put(18,14);
-        put(19,14);
-        put(20,14);
-        put(23,15);
-        put(24,17);
-        put(25,23);
-        put(26,28);
-        put(27,28);
-        put(28,28);
-        put(29,28);
-        put(30,28);
-        put(31,28);
-        put(32,28);
-        put(33,29);
+        put(1,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(2,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(3,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(4,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(5,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(6,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(7,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(8,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(9,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(10,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(12,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(13,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(14,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(15,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(16,Build.VERSION_CODES.ICE_CREAM_SANDWICH);
+        put(17,Build.VERSION_CODES.ICE_CREAM_SANDWICH);
+        put(18,Build.VERSION_CODES.ICE_CREAM_SANDWICH);
+        put(19,Build.VERSION_CODES.ICE_CREAM_SANDWICH);
+        put(20,Build.VERSION_CODES.ICE_CREAM_SANDWICH);
+        put(23,Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1);
+        put(24,Build.VERSION_CODES.JELLY_BEAN_MR1);
+        put(25,Build.VERSION_CODES.M);
+        put(26,Build.VERSION_CODES.P);
+        put(27,Build.VERSION_CODES.P);
+        put(28,Build.VERSION_CODES.P);
+        put(29,Build.VERSION_CODES.P);
+        put(30,Build.VERSION_CODES.P);
+        put(31,Build.VERSION_CODES.P);
+        put(32,Build.VERSION_CODES.P);
+        put(33,Build.VERSION_CODES.Q);
         put(34,30);
         put(35,30);
         put(36,30);
@@ -81,7 +82,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
 
     @SimpleFunction(description = " This method retrieves the meta data value associated with the keyCode. The keyCode currently supported is listed in the official android MetadataRetriever class page as METADATA_XXX constants. With any other value, it returns a null pointer.")
     public String extractMetadata(String absoluteFilename, int keyCode) {
-        if(android.os.Build.VERSION.SDK_INT < 10) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
             return "ERROR! Insufficient API level.";
         }
         if(android.os.Build.VERSION.SDK_INT < minConstantsSDKVersion.get(keyCode))
@@ -111,7 +112,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     @SimpleFunction(description = "This method finds the optional graphic or album/cover art associated associated with the data source. If there are more than one pictures, (any) one of them is returned.")
     public String getEmbeddedPicture(String absoluteFilename)
     {
-        if(android.os.Build.VERSION.SDK_INT < 10) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
             return "ERROR! Insufficient API level.";
         }
 
@@ -140,7 +141,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
     public String getFrameAtIndex (String absoluteFilename, int frameIndex)
     {
-        if(android.os.Build.VERSION.SDK_INT < 28) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return "ERROR! Insufficient API level.";
         }
 
@@ -173,7 +174,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
     public String getFrameAtTime (String absoluteFilename, long timeUs)
     {
-        if(android.os.Build.VERSION.SDK_INT < 10) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
             return "ERROR! Insufficient API level.";
         }
 
@@ -206,7 +207,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
     public String getFrameAtTimeOptionOverload(String absoluteFilename, long timeUs, int option)
     {
-        if(android.os.Build.VERSION.SDK_INT < 10) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
             return "ERROR! Insufficient API level.";
         }
 
@@ -239,7 +240,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     @SimpleFunction(description = "This method retrieves a still image by its index.")
     public String getImageAtIndex (String absoluteFilename, int imageIndex)
     {
-        if(android.os.Build.VERSION.SDK_INT < 28) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return "ERROR! Insufficient API level.";
         }
 
@@ -272,7 +273,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     @SimpleFunction(description = "This method retrieves the primary image of the media content.")
     public String getPrimaryImage (String absoluteFilename)
     {
-        if(android.os.Build.VERSION.SDK_INT < 28) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return "ERROR! Insufficient API level.";
         }
         String imagePath = "ERROR! Could not primary frame.";
@@ -303,7 +304,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
                                        int dstWidth,
                                        int dstHeight)
     {
-        if(android.os.Build.VERSION.SDK_INT < 27) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O_MR1) {
             return "ERROR! Insufficient API level.";
         }
 
