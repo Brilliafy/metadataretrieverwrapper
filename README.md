@@ -1,31 +1,53 @@
 # Metadata Retriever Wrapper
 
 An AI2 Extension to wrap the MetadataRetriever class.
+*reference:* https://developer.android.com/reference/android/media/MediaMetadataRetriever
 
 ## Why was it made
 
-During the development of my 'roll dice!' app, I encountered a shocking issue... I couldn't animate the dice to roll precisely the duration of the sound effect, and there was no other extension available in the community to accomplish that same functionality I was looking for. **SO I MADE MY OWN!**
+During the development of my 'roll dice!' app, I encountered a shocking issue... I couldn't animate the dice to roll precisely the duration of the sound effect, and I was not aware of any other extension available in the community to accomplish that same functionality I was looking for. **SO I MADE MY OWN!**
 
-You could unmistakenly suggest that I could just— hardcode the duration of the specific audio file, to the timer of the animation. **..BUT WHERE'S THE FUN IN THAT?!?**
+You could unmistakenly suggest that I could just have— hardcoded the duration of the specific audio file, to the timer of the animation. **..BUT WHERE'S THE FUN IN THAT?!?**
 
 ## Documentation
 
-There is currently one main function in this extension: The `ExtractMediaData` wrapper block, which consists for two arguments.
+#### This extension currently warps essentially all functions of the MetadataRetriever class, including:
 
-**The first argument**, expects the absolute path of a media file, yet deals with assets just fine! Thanks to the automatic debugging detection, which is an abstract of the AssetExtractor project, which you can visit [here](https://github.com/Brillianware/AssetExtractor/).
+1. [MetadataRetriever.extractMetadata(String absoluteFilename, int keyCode)](https://developer.android.com/reference/android/media/MediaMetadataRetriever#extractMetadata(int))
+2. [MetadataRetriever.getEmbeddedPicture](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getEmbeddedPicture())(String absoluteFilename)
+3. [getFrameAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtIndex(int))(String absoluteFilename, int frameIndex)
+4. [getFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long))(String absoluteFilename, long timeUs)
+5. [getFrameAtTimeOptionOverload](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long,%20int))(String absoluteFilename, long timeUs, int option)
+6. [getImageAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getImageAtIndex(int))(String absoluteFilename, int imageIndex)
+7. [getPrimaryImage](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getPrimaryImage())(String absoluteFilename)
+8. [getScaledFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getScaledFrameAtTime(long,%20int,%20int,%20int))(String absoluteFilename, long timeUs, int option, int dstWidth, int dstHeight)
 
-The file can differ in file formats since it is wrapping an Android pre-defined method, in accordance to your Android API level, explained thoroughly [here](https://developer.android.com/guide/topics/media/media-formats#audio-formats) for audio, and [here](https://developer.android.com/guide/topics/media/media-formats#video-formats) for video.
+All functions **return type `String`**. **They return the absolute filepath of the new extracted image** in cache, aside `from MetadataRetriever.extractMetadata`, which returns metadata. Take for instance: 
 
-**The second argument**, anticipates an integer. More precisely, a constant. Since it is just wrapping the MediaMetadataRetriever.extractMetadata method call, you can find all the corresponding constants with an accurate description of each one of them in this [article](https://developer.android.com/reference/android/media/MediaMetadataRetriever#constants_1).
+`MetadataRetriever.extractMetadata(METADATA_KEY_DURATION)` or preferably `MetadataRetriever.extractMetadata(9)`, returns the duration in milliseconds, such as `3125`
+`MetadataRetriever.extractMetadata(METADATA_KEY_TITLE)` or preferably `MetadataRetriever.extractMetadata(7)`, returns the title of media, if available, such as "My title"
 
-The function can sometimes return null. This could be dealt easily with the `is a string? thing` block. Detailed example can be found on the [original extension post](https://community.appinventor.mit.edu/t/under-evaluation-free-metadata-retriever-wrapper-extract-information/40042). 
+Each function prerequisites a unique API level. Seeing that these functions are virtual methods, granted that one of them was invoked on a device with an older platform version than mandatory, instead of returning results, the method returns an error message. The current error message is: *`"ERROR! Insufficient API level."`*
 
-## Download
+On the occasion that the function fails, it generally returns an error message with a clause. You can handle them by checking if the string returned contains *"ERROR!"*, as it is widely used as a universal error message prefix all across the extension. **Setting a picture component as the error message, causes a crash! Ensure you scan the returned string to handle the error in your code rather than rawly assigning the path of the image to a MetadataRetriever function.**
 
-Click [here](https://community.appinventor.mit.edu/uploads/short-url/q2Vjf09dJNfhc4ZJmB4nNdpKOb6.aix) to download.
+**The first argument**, is usually the argument `absoluteFilename`, which is much self-explanatory. Unlike AI2, *`file:///`* is a redundant prefix; the extension's functions execute without interference regardless of the occurence of the prefix. Be that as it may, all paths returned from the functions, emphatically have to use and are returned with the *`file:///`* prefix.  Furthermore, asset utilisation is approved, despite if apk is run in development mode, thanks to the automatic debugging detection, which is an abstract of the AssetExtractor project, which you can visit [here](https://github.com/Brillianware/AssetExtractor/).
+
+The file assigned can differ in file formats, since it is wrapping an Android pre-defined method, in accordance to your Android API level, explained thoroughly [here](https://developer.android.com/guide/topics/media/media-formats#audio-formats) for audio, and [here](https://developer.android.com/guide/topics/media/media-formats#video-formats) for video.
+
+All methods require a absolute filepath of the target media, as of the MetadataRetriever.setDataSource function, for it is nessesary for relatively every method within the MetadataRetriever class.
+
+**Any other arguments required,** are referenced in great detail inside the [MediaMetadataRetriever class developer reference](https://developer.android.com/reference/android/media/MediaMetadataRetriever#public-methods_1).
+
+
+## Downloads
+
+Click [here](https://github.com/Brilliafy/metadataretrieverwrapper/raw/master/com.michaelam.metadataretrieverwrapper.aix) to download the extension.
+
+Click [here](https://github.com/Brilliafy/metadataretrieverwrapper/blob/master/MetadataRetrieverExample.aia) to download the sample project.
 
 ## Closure
 
-For any inquiries, [contact me](https://github.com/Brillianware).
+For any inquiries, [contact me](https://github.com/Brilliafy).
 
 ### Thank you!
