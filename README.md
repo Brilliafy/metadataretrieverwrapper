@@ -20,12 +20,12 @@ You could unmistakenly suggest that I could just have— hard-coded the duration
 
 1. [MetadataRetriever.extractMetadata](https://developer.android.com/reference/android/media/MediaMetadataRetriever#extractMetadata(int))(String absoluteFilename, int keyCode)
 2. [MetadataRetriever.getEmbeddedPicture](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getEmbeddedPicture())(String absoluteFilename)
-3. [getFrameAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtIndex(int))(String absoluteFilename, int frameIndex)
-4. [getFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long))(String absoluteFilename, long timeUs)
-5. [getFrameAtTimeOptionOverload](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long,%20int))(String absoluteFilename, long timeUs, int option)
-6. [getImageAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getImageAtIndex(int))(String absoluteFilename, int imageIndex)
-7. [getPrimaryImage](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getPrimaryImage())(String absoluteFilename)
-8. [getScaledFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getScaledFrameAtTime(long,%20int,%20int,%20int))(String absoluteFilename, long timeUs, int option, int dstWidth, int dstHeight)
+3. [MetadataRetriever.getFrameAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtIndex(int))(String absoluteFilename, int frameIndex)
+4. [MetadataRetriever.getFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long))(String absoluteFilename, long timeUs)
+5. [MetadataRetriever.getFrameAtTimeOptionOverload](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long,%20int))(String absoluteFilename, long timeUs, int option)
+6. [MetadataRetriever.getImageAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getImageAtIndex(int))(String absoluteFilename, int imageIndex)
+7. [MetadataRetriever.getPrimaryImage](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getPrimaryImage())(String absoluteFilename)
+8. [MetadataRetriever.getScaledFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getScaledFrameAtTime(long,%20int,%20int,%20int))(String absoluteFilename, long timeUs, int option, int dstWidth, int dstHeight)
 
 
 ### Method return
