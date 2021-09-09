@@ -1,5 +1,5 @@
 
-package com.michaelam.metadataretrieverwrapper;
+package com.michaelam.MetadataRetrieverWrapper;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,7 +23,7 @@ import java.util.HashMap;
 @DesignerComponent(
         version = MetadataRetriever.VERSION,
         description =
-                "An efficient extension for extracting media metadata.",
+                "An efficient extension to wrap the MediaMetadataRetriever class and for extracting media metadata.",
         category = ComponentCategory.EXTENSION, nonVisible = true,
         iconName = "https://i.ibb.co/RTxMLN4/icon.png")
 @SimpleObject(external = true)
@@ -33,8 +33,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     private static Context context;
 
     public final HashMap<Integer,Integer> minConstantsSDKVersion = new HashMap<Integer,Integer>(){{
-        //(K)ey is constant, (V)alue is SDK version.
-        put(1,Build.VERSION_CODES.GINGERBREAD_MR1);
+        put(1,Build.VERSION_CODES.GINGERBREAD_MR1);           //(K)ey is constant, (V)alue is SDK version.
         put(2,Build.VERSION_CODES.GINGERBREAD_MR1);
         put(3,Build.VERSION_CODES.GINGERBREAD_MR1);
         put(4,Build.VERSION_CODES.GINGERBREAD_MR1);
@@ -81,37 +80,33 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
     }
 
     @SimpleFunction(description = " This method retrieves the meta data value associated with the keyCode. The keyCode currently supported is listed in the official android MetadataRetriever class page as METADATA_XXX constants. With any other value, it returns a null pointer.")
-    public String extractMetadata(String absoluteFilename, int keyCode) {
+    public String ExtractMetadata(String absoluteFilename, int keyCode) {
+
         if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
             return "ERROR! Insufficient API level.";
         }
-        if(android.os.Build.VERSION.SDK_INT < minConstantsSDKVersion.get(keyCode))
-        {
+        if(android.os.Build.VERSION.SDK_INT < minConstantsSDKVersion.get(keyCode)) {
             return "ERROR! Insufficient API level. API level should be '" + minConstantsSDKVersion.get(keyCode).toString() + "' to use that keycode. Current API level is: " + Integer.toString(android.os.Build.VERSION.SDK_INT);
         }
 
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         String metaData = "";
-        try
-        {
-            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
+        try {
+            metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             metaData = metaRetriever.extractMetadata(keyCode);
             metaRetriever.release();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        if(metaData == null || metaData.isEmpty() || metaData.trim().isEmpty())
-        {
+        if(metaData == null || metaData.isEmpty() || metaData.trim().isEmpty()) {
             return "ERROR! Could not retrieve metadata.";
         }
         return metaData;
     }
 
     @SimpleFunction(description = "This method finds the optional graphic or album/cover art associated associated with the data source. If there are more than one pictures, (any) one of them is returned.")
-    public String getEmbeddedPicture(String absoluteFilename)
-    {
+    public String GetEmbeddedPicture(String absoluteFilename) {
+
         if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
             return "ERROR! Insufficient API level.";
         }
@@ -119,7 +114,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String embeddedImagePath = "ERROR! Could not retrieve embedded image.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
+            metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             byte[] embeddedImageData = metaRetriever.getEmbeddedPicture();
             metaRetriever.release();
             if(embeddedImageData == null) {
@@ -131,16 +126,15 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
             out.flush();
             out.close();
             embeddedImagePath = new File(context.getCacheDir(), "embeddedImage.png").getAbsolutePath();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "file://" + embeddedImagePath;
     }
 
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
-    public String getFrameAtIndex (String absoluteFilename, int frameIndex)
-    {
+    public String GetFrameAtIndex (String absoluteFilename, int frameIndex) {
+
         if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return "ERROR! Insufficient API level.";
         }
@@ -148,7 +142,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String videoFramePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
+            metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             int mediaTotalFrames =  Integer.parseInt(metaRetriever.extractMetadata(32));
             if(mediaTotalFrames < frameIndex)
             {
@@ -164,16 +158,15 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
             out.flush();
             out.close();
             videoFramePath = new File(context.getCacheDir(), "videoFrame.png").getAbsolutePath();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "file://" + videoFramePath;
     }
 
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
-    public String getFrameAtTime (String absoluteFilename, long timeUs)
-    {
+    public String GetFrameAtTime (String absoluteFilename, long timeUs) {
+
         if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
             return "ERROR! Insufficient API level.";
         }
@@ -181,7 +174,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String videoFramePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
+            metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
             if(mediaDurationMicroseconds < timeUs)
             {
@@ -197,16 +190,15 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
             out.flush();
             out.close();
             videoFramePath = new File(context.getCacheDir(), "videoFrame.png").getAbsolutePath();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "file://" + videoFramePath;
     }
 
     @SimpleFunction(description = "This method retrieves a video frame by its index.")
-    public String getFrameAtTimeOptionOverload(String absoluteFilename, long timeUs, int option)
-    {
+    public String GetFrameAtTimeOptionOverload(String absoluteFilename, long timeUs, int option) {
+
         if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1) {
             return "ERROR! Insufficient API level.";
         }
@@ -214,7 +206,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String videoFramePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
+            metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
             if(mediaDurationMicroseconds < timeUs)
             {
@@ -230,16 +222,15 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
             out.flush();
             out.close();
             videoFramePath = new File(context.getCacheDir(), "videoFrame.png").getAbsolutePath();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "file://" + videoFramePath;
     }
 
     @SimpleFunction(description = "This method retrieves a still image by its index.")
-    public String getImageAtIndex (String absoluteFilename, int imageIndex)
-    {
+    public String GetImageAtIndex (String absoluteFilename, int imageIndex) {
+
         if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return "ERROR! Insufficient API level.";
         }
@@ -247,7 +238,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String imagePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
+            metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             int mediaTotalFrames =  Integer.parseInt(metaRetriever.extractMetadata(32));
             if(mediaTotalFrames < imageIndex)
             {
@@ -263,23 +254,23 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
             out.flush();
             out.close();
             imagePath = new File(context.getCacheDir(), "stillImage.png").getAbsolutePath();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "file://" + imagePath;
     }
 
     @SimpleFunction(description = "This method retrieves the primary image of the media content.")
-    public String getPrimaryImage (String absoluteFilename)
-    {
+    public String GetPrimaryImage (String absoluteFilename) {
+
         if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return "ERROR! Insufficient API level.";
         }
+
         String imagePath = "ERROR! Could not primary frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
+            metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             Bitmap imageBitmap = metaRetriever.getPrimaryImage();
             metaRetriever.release();
             if(imageBitmap == null) {
@@ -290,20 +281,19 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
             out.flush();
             out.close();
             imagePath = new File(context.getCacheDir(), "primaryImage.png").getAbsolutePath();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "file://" + imagePath;
     }
 
     @SimpleFunction(description = "Retrieve a video frame near a given timestamp scaled to a desired size. This method finds a representative frame close to the given time position by considering the given option if possible, and returns it as a bitmap with same aspect ratio as the source while scaling it so that it fits into the desired size of dst_width by dst_height. This is useful for generating a thumbnail for an input data source or just to obtain a scaled frame at the given time position.")
-    public String getScaledFrameAtTime(String absoluteFilename,
+    public String GetScaledFrameAtTime(String absoluteFilename,
                                        long timeUs,
                                        int option,
                                        int dstWidth,
-                                       int dstHeight)
-    {
+                                       int dstHeight) {
+
         if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O_MR1) {
             return "ERROR! Insufficient API level.";
         }
@@ -311,12 +301,13 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         String scaledFramePath = "ERROR! Could not retrieve video frame.";
         android.media.MediaMetadataRetriever metaRetriever = new android.media.MediaMetadataRetriever();
         try {
-            metaRetriever.setDataSource(locateAbsoluteFilePath(absoluteFilename));
+            metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
+
             int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
-            if(mediaDurationMicroseconds < timeUs)
-            {
+            if(mediaDurationMicroseconds < timeUs) {
                 return "ERROR! Frame is out of media duration.";
             }
+
             Bitmap frameBitmap = metaRetriever.getScaledFrameAtTime(timeUs,option,dstWidth,dstHeight);
             metaRetriever.release();
             if(frameBitmap == null) {
@@ -334,8 +325,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         return "file://" + scaledFramePath;
     }
 
-    public static String locateAbsoluteFilePath(String path)
-    {
+    public static String LocateAbsoluteFilePath(String path) {
         if(path.contains("file:///")) {
             path = path.substring(7);
         }
@@ -383,8 +373,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         return context.getFilesDir().getAbsolutePath().contains("companion");
     }
 
-    public static String getAI2AssetsFolderPath()
-    {
+    public static String getAI2AssetsFolderPath() {
         return new File(context.getExternalFilesDir(null).getAbsolutePath(), "/AppInventor/assets/").getAbsolutePath();
     }
 }
