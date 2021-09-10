@@ -29,7 +29,7 @@ import java.util.HashMap;
 @SimpleObject(external = true)
 @UsesPermissions(permissionNames = "android.permission.WRITE_EXTERNAL_STORAGE")
 public class MetadataRetriever extends AndroidNonvisibleComponent {
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
     private static Context context;
 
     public final HashMap<Integer,Integer> minConstantsSDKVersion = new HashMap<Integer,Integer>(){{
@@ -98,6 +98,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         if(metaData == null || metaData.isEmpty() || metaData.trim().isEmpty()) {
             return "ERROR! Could not retrieve metadata.";
         }
@@ -176,8 +177,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         try {
             metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
-            if(mediaDurationMicroseconds < timeUs)
-            {
+            if(mediaDurationMicroseconds < timeUs) {
                 return "ERROR! Frame is out of media duration bounds. Last frame is captured at: " + mediaDurationMicroseconds + " microseconds.";
             }
             Bitmap frameBitmap = metaRetriever.getFrameAtTime(timeUs);
@@ -208,8 +208,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         try {
             metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             int mediaDurationMicroseconds =  Integer.parseInt(metaRetriever.extractMetadata(9)) * 1000;
-            if(mediaDurationMicroseconds < timeUs)
-            {
+            if(mediaDurationMicroseconds < timeUs) {
                 return "ERROR! Frame is out of media duration.";
             }
             Bitmap frameBitmap = metaRetriever.getFrameAtTime(timeUs, option);
@@ -240,8 +239,7 @@ public class MetadataRetriever extends AndroidNonvisibleComponent {
         try {
             metaRetriever.setDataSource(LocateAbsoluteFilePath(absoluteFilename));
             int mediaTotalFrames =  Integer.parseInt(metaRetriever.extractMetadata(32));
-            if(mediaTotalFrames < imageIndex)
-            {
+            if(mediaTotalFrames < imageIndex) {
                 return "ERROR! Image index is out of bounds. Last frame index is: " + mediaTotalFrames;
             }
             Bitmap imageBitmap = metaRetriever.getImageAtIndex(imageIndex);
