@@ -18,22 +18,22 @@ You could unmistakenly suggest that I could just have— hard-coded the duration
 
 #### This extension currently wraps essentially all functions of the MetadataRetriever class, including:
 
-1. [MetadataRetriever.extractMetadata](https://developer.android.com/reference/android/media/MediaMetadataRetriever#extractMetadata(int))(String absoluteFilename, int keyCode)
-2. [MetadataRetriever.getEmbeddedPicture](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getEmbeddedPicture())(String absoluteFilename)
-3. [MetadataRetriever.getFrameAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtIndex(int))(String absoluteFilename, int frameIndex)
-4. [MetadataRetriever.getFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long))(String absoluteFilename, long timeUs)
-5. [MetadataRetriever.getFrameAtTimeOptionOverload](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long,%20int))(String absoluteFilename, long timeUs, int option)
-6. [MetadataRetriever.getImageAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getImageAtIndex(int))(String absoluteFilename, int imageIndex)
-7. [MetadataRetriever.getPrimaryImage](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getPrimaryImage())(String absoluteFilename)
-8. [MetadataRetriever.getScaledFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getScaledFrameAtTime(long,%20int,%20int,%20int))(String absoluteFilename, long timeUs, int option, int dstWidth, int dstHeight)
+1. [MetadataRetriever.ExtractMetadata](https://developer.android.com/reference/android/media/MediaMetadataRetriever#extractMetadata(int))(String absoluteFilename, int keyCode)
+2. [MetadataRetriever.GetEmbeddedPicture](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getEmbeddedPicture())(String absoluteFilename)
+3. [MetadataRetriever.GetFrameAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtIndex(int))(String absoluteFilename, int frameIndex)
+4. [MetadataRetriever.GetFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long))(String absoluteFilename, long timeUs)
+5. [MetadataRetriever.GetFrameAtTimeOptionOverload](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getFrameAtTime(long,%20int))(String absoluteFilename, long timeUs, int option)
+6. [MetadataRetriever.GetImageAtIndex](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getImageAtIndex(int))(String absoluteFilename, int imageIndex)
+7. [MetadataRetriever.GetPrimaryImage](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getPrimaryImage())(String absoluteFilename)
+8. [MetadataRetriever.GetScaledFrameAtTime](https://developer.android.com/reference/android/media/MediaMetadataRetriever#getScaledFrameAtTime(long,%20int,%20int,%20int))(String absoluteFilename, long timeUs, int option, int dstWidth, int dstHeight)
 
 
 ### Method return
-All functions **return type `String`. They return the absolute file path of the new extracted image** in cache, aside from the function *`MetadataRetriever.extractMetadata`*, which returns metadata. Take for instance: 
+All functions **return type `String`. They return the absolute file path of the new extracted image** in cache, aside from the function *`MetadataRetriever.ExtractMetadata`*, which returns metadata. Take for instance: 
 
 
-- *`MetadataRetriever.extractMetadata(METADATA_KEY_DURATION)`* or preferably *`MetadataRetriever.extractMetadata(9)`*, returns the duration in milliseconds, such as *`3125`*
-- *`MetadataRetriever.extractMetadata(METADATA_KEY_TITLE)`* or preferably *`MetadataRetriever.extractMetadata(7)`*, returns the title of media, if available, such as *"My title"*
+- *`MetadataRetriever.ExtractMetadata(METADATA_KEY_DURATION)`* or preferably *`MetadataRetriever.ExtractMetadata(9)`*, returns the duration in milliseconds, such as *`3125`*
+- *`MetadataRetriever.ExtractMetadata(METADATA_KEY_TITLE)`* or preferably *`MetadataRetriever.ExtractMetadata(7)`*, returns the title of media, if available, such as *"My title"*
 
 
 
@@ -54,7 +54,7 @@ Furthermore, asset utilisation as a filepath is approved, despite if the applica
 The file assigned can differ in file formats, since it is wrapping an Android pre-defined method, in accordance to your Android API level, explained thoroughly [here](https://developer.android.com/guide/topics/media/media-formats#audio-formats) for audio, and [here](https://developer.android.com/guide/topics/media/media-formats#video-formats) for video.
 
 
-All methods require an absolute file path of the target media, as of the MetadataRetriever.setDataSource function, for it is necessary for relatively every method within the MetadataRetriever class.
+All methods require an absolute file path of the target media, as of the MetadataRetriever.SetDataSource function, for it is necessary for relatively every method within the MetadataRetriever class.
 
 
 **Any other arguments required,** are referenced in great detail inside the [MediaMetadataRetriever Class Developer Reference](https://developer.android.com/reference/android/media/MediaMetadataRetriever#public-methods_1).
@@ -64,9 +64,8 @@ All methods require an absolute file path of the target media, as of the Metadat
 
 ## Downloads
 
-Click [here](https://github.com/Brilliafy/metadataretrieverwrapper/raw/master/com.michaelam.metadataretrieverwrapper.aix) to download the extension.
+Click [here](https://github.com/Brilliafy/metadataretrieverwrapper/releases) to download the extension/project.
 
-Click [here](https://github.com/Brilliafy/metadataretrieverwrapper/blob/master/MetadataRetrieverExample.aia) to download the sample project.
 
 ## Closure
 For any inquiries, [contact me](https://github.com/Brilliafy).
